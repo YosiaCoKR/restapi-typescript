@@ -1,17 +1,6 @@
-import 'dotenv/config'
-import express, { type Application, type Request, type Response } from 'express'
+import app from './app'
+import { env } from './config/env'
 
-const app: Application = express()
-
-const PORT: number =
-  process.env.PORT != null ? parseInt(process.env.PORT) : 3000
-
-app.use(express.json())
-
-app.get('/', (req: Request, res: Response) => {
-  res.send('Server TypeScript Express Berhasil Berjalan!')
-})
-
-app.listen(PORT, () => {
-  console.log(`Server running on  http://localhost:${PORT}`)
+app.listen(env.PORT, () => {
+  console.log(`Server is running on port https://localhost:${env.PORT}`)
 })

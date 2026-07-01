@@ -20,3 +20,5 @@ export const userSchema = z.object({
       message: 'Passwords do not match'
     })
 })
+
+export type UserInput = z.infer<typeof userSchema>['body']
