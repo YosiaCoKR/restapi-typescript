@@ -1,10 +1,5 @@
 import 'dotenv/config'
-import express, {
-  type Application,
-  type NextFunction,
-  type Request,
-  type Response
-} from 'express'
+import express, { type Application, type Request, type Response } from 'express'
 
 const app: Application = express()
 
@@ -13,7 +8,7 @@ const PORT: number =
 
 app.use(express.json())
 
-app.get('/', (req: Request, res: Response, next: NextFunction) => {
+app.get('/', (req: Request, res: Response) => {
   res.send('Server TypeScript Express Berhasil Berjalan!')
 })
 

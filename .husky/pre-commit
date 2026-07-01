@@ -1,42 +1,7 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
+. "$(dirname "$0")/_/husky.sh"
 
-# ANSI Color Codes untuk styling terminal
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-CYAN='\033[0;36m'
-NC='\033[0m' # No Color (Reset)
-
-echo -e "${CYAN}🍳 [Husky] Kitchen Check: Testing & Building before committing...${NC}"
-
-# 1. Check Format
-echo -e "${CYAN}→ Checking code formatting...${NC}"
-npm run check-format || {
-    echo -e "${RED}❌ IT'S FORKING RAW! Your code formatting is an absolute mess!${NC}"
-    echo -e "${YELLOW}💡 Run 'npm run format' to fix this disaster before you serve it! 😤${NC}"
-    exit 1
-}
-
-# 2. Check Lint
-echo -e "${CYAN}→ Running linter check...${NC}"
-npm run check-lint || {
-    echo -e "${RED}❌ WHAT ARE YOU? An idiot sandwich?! Fix your linting errors! 🥪${NC}"
-    exit 1
-}
-
-# 3. Check Types (TypeScript)
-echo -e "${CYAN}→ Running TypeScript compiler check...${NC}"
-npm run check-types || {
-    echo -e "${RED}❌ SHUT IT DOWN! Type error detected! You're gonna kill someone with this code! 🤮${NC}"
-    exit 1
-}
-
-# 4. Check Build
-echo -e "${CYAN}→ Attempting production build...${NC}"
-npm run build || {
-    echo -e "${RED}❌ CONGRATULATIONS, YOU FAT PARTRIDGE! The build just crashed! 💥${NC}"
-    exit 1
-}
-
-# Jika semua lolos
-echo -e "${GREEN}✨ Delicious! All tests passed. Beautifully done, proceed with commit Chef! 👨‍🍳🔥${NC}"
+npm run check-format
+npm run check-lint
+npm run check-types
+npm run build
