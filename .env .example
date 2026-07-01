@@ -1,0 +1,7 @@
+NODE_ENV=development
+PORT=3000
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/myapp?schema=public&connection_limit=10&pool_timeout=20
+REDIS_URL=redis://localhost:6379
+JWT_SECRET=ganti-dengan-random-string-minimal-32-karakter
+JWT_EXPIRES_IN=15m
+ALLOWED_ORIGINS=http://localhost:5173,http://localhost:3000
