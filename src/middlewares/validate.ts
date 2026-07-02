@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express'
 import { ZodObject, ZodRawShape } from 'zod'
 
 export const validate =
-  (schema: ZodObject<ZodRawShape>) =>
+  <T extends ZodObject<ZodRawShape>>(schema: T) =>
   (req: Request, res: Response, next: NextFunction) => {
     const result = schema.safeParse({
       body: req.body,
@@ -13,7 +13,10 @@ export const validate =
       return res.status(400).json({
         status: 'error',
         message: 'Validation failed',
-        errors: result.error
+        errors: result.error.issues.map((issue) => ({
+          field: issue.path.slice(1).join('.'),
+          message: issue.message
+        }))
       })
     }
     next()
